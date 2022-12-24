@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" >
+	<meta name="viewport" content="width=device-width,  initial-scale=1.0" >
+	<title> Word speed Game</title>
+	<link rel="stylesheet" href="style.css" >
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+
+/* GENERAL */
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+
+body{
+	background-color:#444;
+	color:white;
+	text-align:center;
+	font-family:Arial,sans-serif;
+	display: flex;
+	justify-content:flex-start;
+	align-items:center;
+	flex-direction:column;
+	height:100vh;
+	width:100vw;
+	font-size:14px;
+}
+
+p{
+	line-height:25px;
+}
+
+
+/* HEADER STYLING*/
+.header{
+	width:100%;
+	background-color:#666;
+	padding:10px;
+}
+
+.header p{
+	font-family: 'Zen Dots';
+}
+
+
+
+/* LEVEL DIFFICULTY STYLING*/
+.level-container {
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	margin:20px auto 10px;
+}
+
+select{
+	width:100%;
+	padding:10px;
+	outline:none;
+	border:;
+	font-size:18px;
+	border-radius:4px;
+	margin:10px auto 0;
+	overflow:auto;
+}
+
+select:hover{
+	background-color:transparent;
+	color: white;
+	border:2px inset white;
+}
+
+.level-btn {
+	background-color:blue;
+	color:blue;
+}
+
+
+/* START BUTTON STYLING*/
+.start-btn{
+	outline:0;
+	border:0;
+	padding:10px;
+	font-size:24px;
+	background-color:white;
+	color:#333;
+	font-weight:bold;
+	border-radius:3px;
+	width:80%;
+	font-family:georgia;
+	margin:30px auto;
+}
+
+.start-btn:hover{
+	background-color:transparent;
+	color:white;
+	border:2px inset white;	
+}
+
+
+/* CONTAINER SECTION STYLING*/
+.container{
+	padding:10px;
+	margin:10px auto;
+	text-align:center;
+	width:90%;
+}
+
+.tip{
+	margin:0 auto 30px;
+}
+
+
+/*--- seconds */
+.seconds{
+	color:yellow;
+}
+
+/*--- current word */
+.current-word {
+	font-family:georgia;
+	font-size:30px;
+	margin:0 auto 30px;
+}
+
+/*--- word input */
+.word-input{
+	border:none;
+	outline:none;
+	width:100%;
+	padding:10px;
+	font-size:16px;
+	margin:0 auto 20px;
+}
+
+/*--- remark */
+.remark{
+	margin:0 auto 20px;
+}
+
+/*--- status */
+.status{
+	padding:10px 0;
+	display:flex;
+	align-items:center;
+	justify-content:space-around;
+	margin:0 auto 30px;
+}
+
+
+.status p{
+	font-size:18px;
+	font-weight:bold;
+}
+
+
+/* INSTRUCTION SECTION STYLING*/
+.instruction {
+	width:90%;
+	margin:50px auto 0;
+	padding:10px;
+	background-color:#666;
+	text-align:left;
+	font-size:14px;
+	line-height:28px;
+}
+
+.instruction h3{
+	margin:0 auto 10px;
+}
+
+
+
+/* Hide Class Styling */
+.hide{
+	display:none;
+}
+
+
+</style>
+</head>
+<body>
+	<!--- THIS IS THE HEADER SECTION ----->	
+	<header class="header" ><p> WORD SPEED </p></header>
+		
+	<!--- THIS IS THE GAME LEVEL CONTAINER SECTION ----->	
+	<section class="level-container" >
+		<h3> Choose a Level </h3>
+		
+		<!--- Level options ----->	
+		<select class="levels" >
+			<option value="easy"  class="level-btn easy"> Easy </option>
+			<option value="medium" class="level-btn medium"> Medium </option>
+			<option value="hard"  class="level-btn hard"> Hard </option>		
+			<option value="extreme"  class="level-btn Extreme"> Legend </option>		
+		</select>	
+	</section>
+	
+	<!--- THIS IS THE START BUTTON ----->	
+	<button class="start-btn" > START </button>
+		
+	<!--- THIS IS THE OVERALL CONTAINER ---->	
+	<section class="container hide" >	
+		<!--- This Paragraph gives the tip and time allocated ---->	
+		<p class="tip" > Type the word given within: <span class="seconds" > </span></p>
+		
+		<!--- This Paragraph displays the current word ----->	
+		<p class="current-word" >  </p>
+		
+		<!--- This allows the user enter text values ----->	
+		<input type="text" name="text" value="" placeholder="Start typing..."   class="word-input" >
+		
+		<!--- This shows the performance remark ----->	
+		<h4 class="remark" >  </h4>
+
+		<!--- This div contains the time left and score ----->			
+		<div class="status" > 
+			<p class="time-left" > Time Left: <span class="time" > </span></p>
+			
+			<p class="your-score" > Your Score: <span class="score"> 0 </span></p>
+		</div>	
+	</section>
+	
+	
+	<!----- THIS SECTION CONTAINS INSTRUCTIONS FOR PLAYING THE GAME --------->	
+	<section class="instruction" >
+		<h3> INSTRUCTIONS </h3>
+		<div class="instruction-text" > 
+			<li>Type each random words in the given amount of seconds to score. </li>
+			<li><b>To play again,</b> just type the current word.</mark> Your score will reset.</li>
+			
+			<div><b>There are Four difficulty levels based on timing:</b>
+				<li> Easy: 7 seconds </li>
+				<li> Medium: 5 seconds </li>
+				<li> Hard: 3 seconds </li>
+				<li> Legend: 2 seconds </li>
+			</div>
+			
+			<p style="text-align:center" ><strong> CAN YOU BEAT THE WORD? </strong></p>
+		</div>	
+	</section>
+	
+
+
+<script type="text/javascript">
+
+//GLOBAL VARIABLES
+let time
+let score = 0
+let isPlaying
+
+
+// THIS IS THE GAME LEVEL DIFFICULT Y FUNCTION 
+let levels = document.querySelector(".levels")		
+		function gameDifficulty(){
+		event.preventDefault()
+		if(levels.value === "easy"){
+			time = 7
+		}
+		else if(levels.value === "medium"){
+			time = 5
+		}
+		
+		else if(levels.value === "hard"){
+			time = 3
+		}
+		else if(levels.value === "extreme"){
+			time = 2
+		}	
+	}
+	
+
+//DOM VARIABLES
+let levelContainer = document.querySelector(".level-container")
+let startBtn = document.querySelector(".start-btn")
+let gameContainer = document.querySelector(".container")
+let seconds = document.querySelector(".seconds")
+let currentWord = document.querySelector(".current-word")
+let wordInput = document.querySelector(".word-input")
+let remark = document.querySelector(".remark")
+let timeDisplay = document.querySelector(".time")
+let scoreDisplay = document.querySelector(".score")
+let instruction = document.querySelector(".instruction")
+
+// This Function initializes the game when the start button is clicked
+	function startGame(){
+		//The game difficulty function is called to initialize the time
+		gameDifficulty()
+		//Display the current time
+		timeDisplay.textContent = time
+		//Display the game container
+		gameContainer.classList.remove("hide")
+		//Hide the start button	
+		startBtn.classList.add("hide")
+		//Hide the Level Container
+		levelContainer.classList.add("hide")
+		//Hide the instruction
+		instruction.classList.add("hide")
+		//fire the initializing function
+		initial()
+	}
+	startBtn.addEventListener("click", startGame)
+	
+	
+
+// ARRAY CONTAINING A LIST OF WORDS
+const words = ["Estate", "Freedom", "Enterprise", "School", "Yesterday", "Country", "JavaScript", "Powerful", "Theater", "Center", "Excellence", "Cybersecurity", "Element", "Subwoofer", "System", "Continent", "Home", "Worship", "River", "Space", "Fanbase", "Editor", "Lawyer", "House", "Sport", "Post", "Father", "Mother", "Water", "Caricature", "Animal", "Decentralize", "Gross", "Initiation", "Zenith", "Yatch", "Winner", "Preacher", 
+               "Living", "Redeemed", "Xylophone", "Babylon", "Python", "Programmer", "Arithmetics", "Ditto", "Elegance", "Superb", "Preview", "Formation", "Psychology", "Football", "Education", "Extreme", "Family", "Physiology", "Quintessential", "Catalyst", "Successful", "Brilliant", "Artificial", "Compression", "Delegate", "Perception", "Materialistic", "Singleton", "Complicated", "Greatness", "Development", "Magnitude"]
+
+
+// FUNCTION TO FIRE WHEN THE PAGE LOADS
+function initial(){
+	//load word from array
+	showWord(words)
+	//start matching on input
+	wordInput.addEventListener("input", startMatch)
+	//call countdown function
+	setInterval(countdown, 1000)	
+	//check game status
+	setInterval(checkStatus, 50)
+	//Total time allocated display
+	seconds.textContent = time  + " seconds"
+}
+
+//PICK AND SHOW WORD FROM ARRAY
+function showWord(words){
+	// generate random array index
+	const randomIndex = Math.floor(Math.random() * words.length)
+	//output random word
+	currentWord.textContent = words[randomIndex]	
+}
+
+
+//START MATCH
+function startMatch(){
+	if(matchWords()){
+		//fire the gameDifficulty function to reset
+		gameDifficulty()
+		++time
+		isPlaying = true
+		showWord(words)
+		wordInput.value = ""
+		score++
+	}
+	//change score to zero if score is -1
+	if(score === -1){
+		scoreDisplay.innerHTML = 0
+	}
+	//update new score
+	else{
+		scoreDisplay.innerHTML = score 		
+	}
+}
+
+
+//MATCH CURRENT WORD TO WORD INPUT
+function matchWords(){
+	if(wordInput.value === currentWord.innerHTML){
+		remark.innerHTML = "Correct"
+		remark.style.color = "green"
+		return true
+	}
+	else{
+		remark.innerHTML = "..."
+		return false
+	}
+}
+
+
+//COUNTDOWN TIMER 
+function countdown(){
+	//make sure the time is not run out
+	if(time > 0){
+		//decrement	
+		time--	
+	}
+	else if(time === 0){
+		//game over
+		isPlaying = false
+	}
+	//show time
+	timeDisplay.textContent = time		
+}
+
+
+//FUNCTION TO CHECK GAME STATUS
+function checkStatus(){
+	if(time === 0){		
+		remark.innerHTML = "Game Over!!!"
+		remark.style.color = "red"
+		score = -1 			
+	}	
+}
+
+
+</script>
+</body>
+</html>
